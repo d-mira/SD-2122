@@ -1,4 +1,4 @@
-package tp1.api.server.resources;
+package tp1.server.resources;
 
 public class DirectoryResources {
 }

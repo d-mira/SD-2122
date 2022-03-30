@@ -1,4 +1,4 @@
-package tp1.api.server;
+package tp1.server;
 
 /**
  * Don't actually know if we need servers for all services or just one server for every service,

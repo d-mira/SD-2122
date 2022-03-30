@@ -1,4 +1,4 @@
-package tp1.api.client.directory;
+package tp1.clients.directory;
 
 /**
  * This will probably be an HTTP PUT with the change in the file's users authorization list

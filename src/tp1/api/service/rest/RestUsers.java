@@ -18,6 +18,7 @@ import tp1.api.User;
 public interface RestUsers {
 
 	static final String PATH="/users";
+	public static final String QUERY = "query";
 
 	/**
 	 * Creates a new user.

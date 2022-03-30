@@ -1,4 +1,4 @@
-package tp1.api.client.file;
+package tp1.clients.directory;
 
 public class DeleteFileClient {
 }
