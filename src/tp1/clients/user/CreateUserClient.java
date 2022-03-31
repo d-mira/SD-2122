@@ -36,7 +36,7 @@ public class CreateUserClient {
         Log.info("Sending request to server.");
 
         var result = new RestUsersClient(URI.create(serverUrl)).createUser(u);
-        System.out.println("Result: " + result);
+        System.out.println("User created with info: " + result);
     }
 
 }
