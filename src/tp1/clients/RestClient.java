@@ -23,7 +23,7 @@ public class RestClient {
 	protected final Client client;
 	protected final ClientConfig config;
 
-	protected RestClient(URI serverURI) {
+	RestClient(URI serverURI) {
 		this.serverURI = serverURI;
 		this.config = new ClientConfig();
 
