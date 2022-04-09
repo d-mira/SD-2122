@@ -9,12 +9,7 @@ import tp1.clients.RestClient;
 import java.net.URI;
 import java.util.List;
 
-public class
-
-
-
-
-RestDirectoriesClient extends RestClient implements RestDirectory {
+public class RestDirectoriesClient extends RestClient implements RestDirectory {
 
     final WebTarget target;
 

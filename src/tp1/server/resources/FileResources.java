@@ -5,6 +5,10 @@ import jakarta.ws.rs.core.Response;
 import tp1.api.FileInfo;
 import tp1.api.service.rest.RestFiles;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -14,11 +18,6 @@ import java.util.logging.Logger;
 public class FileResources implements RestFiles {
 
     private static Logger Log = Logger.getLogger(FileResources.class.getName());
-
-    //Not sure if we should actually write a file or just store the data
-    // to simulate a filesystem
-    //Assuming the second option:
-    private Map<String, byte[]> filesystem = new HashMap<>();
 
     public FileResources(){
     }
@@ -39,7 +38,14 @@ public class FileResources implements RestFiles {
         * }
         * */
 
-        filesystem.put(fileId, data);
+        File file = new File(fileId);
+        try(FileOutputStream fos = new FileOutputStream(file.getPath())){
+            fos.write(data);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -57,12 +63,12 @@ public class FileResources implements RestFiles {
          * }
          * */
 
-        if(filesystem.get(fileId) == null){
-            Log.info("File does not exist.");
+        //Tries to delete the file
+        if(!new File(fileId).delete()){
+            Log.info("Operation Failed.");
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        filesystem.remove(fileId);
     }
 
     @Override
@@ -80,13 +86,20 @@ public class FileResources implements RestFiles {
          * }
          * */
 
-        byte[] file = filesystem.get(fileId);
+        try(FileInputStream fis = new FileInputStream(fileId)){
+            byte[] data = fis.readAllBytes();
 
-        if(file == null){
-            Log.info("File does not exist.");
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
+            if(data == null){
+                Log.info("File not found.");
+                throw new WebApplicationException(Response.Status.NOT_FOUND);
+            }
+
+            return data;
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
 
-        return file;
+        return null;
     }
 }

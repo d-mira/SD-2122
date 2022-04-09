@@ -145,13 +145,6 @@ public class UserResources implements RestUsers {
             }
         }
 
-        //If no users were found we should maybe exit
-        /*if(matchingUsers.size() == 0){
-            Log.info("No users found.");
-            throw new WebApplicationException(Status.NOT_FOUND);
-        }*/
-
-
         return matchingUsers;
     }
 }
